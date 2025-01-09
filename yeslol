@@ -5,7 +5,8 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Ngigerngieofoepdo/Bet
 local ScreenGui = Instance.new("ScreenGui")
 local MainFrame = Instance.new("Frame")
 local SectionLabel = Instance.new("TextLabel")
-local Toggle = Instance.new("TextButton")
+local MobileToggle = Instance.new("TextButton")
+local PCToggle = Instance.new("TextButton")
 local LoadoutButton1 = Instance.new("TextButton")
 
 ScreenGui.Name = "LoadoutGUI"
@@ -26,32 +27,56 @@ SectionLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 SectionLabel.TextSize = 20
 SectionLabel.Parent = MainFrame
 
-Toggle.Name = "Toggle"
-Toggle.Size = UDim2.new(0, 200, 0, 50)
-Toggle.Position = UDim2.new(0.5, -100, 0, 60)
-Toggle.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-Toggle.Text = "Enable Loadouts"
-Toggle.TextColor3 = Color3.fromRGB(255, 255, 255)
-Toggle.TextSize = 18
-Toggle.Parent = MainFrame
+MobileToggle.Name = "MobileToggle"
+MobileToggle.Size = UDim2.new(0, 200, 0, 50)
+MobileToggle.Position = UDim2.new(0.5, -100, 0, 60)
+MobileToggle.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+MobileToggle.Text = "Toggle Mobile GUI"
+MobileToggle.TextColor3 = Color3.fromRGB(255, 255, 255)
+MobileToggle.TextSize = 18
+MobileToggle.Parent = MainFrame
+
+PCToggle.Name = "PCToggle"
+PCToggle.Size = UDim2.new(0, 200, 0, 50)
+PCToggle.Position = UDim2.new(0.5, -100, 0, 120)
+PCToggle.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+PCToggle.Text = "Toggle PC GUI"
+PCToggle.TextColor3 = Color3.fromRGB(255, 255, 255)
+PCToggle.TextSize = 18
+PCToggle.Parent = MainFrame
 
 LoadoutButton1.Name = "LoadoutButton1"
 LoadoutButton1.Size = UDim2.new(0, 200, 0, 50)
-LoadoutButton1.Position = UDim2.new(0.5, -100, 0, 120)
+LoadoutButton1.Position = UDim2.new(0.5, -100, 0, 180)
 LoadoutButton1.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 LoadoutButton1.Text = "Loadout 1"
 LoadoutButton1.TextColor3 = Color3.fromRGB(255, 255, 255)
 LoadoutButton1.TextSize = 18
 LoadoutButton1.Parent = MainFrame
 
-local isEnabled = true
-Toggle.MouseButton1Click:Connect(function()
-    isEnabled = not isEnabled
-    Toggle.Text = isEnabled and "Disable Loadouts" or "Enable Loadouts"
+local isPCEnabled = true
+local isMobileEnabled = true
+
+if not game:GetService("UserInputService"):TouchEnabled then
+    MobileToggle.Visible = false
+else
+    PCToggle.Visible = false
+end
+
+MobileToggle.MouseButton1Click:Connect(function()
+    isMobileEnabled = not isMobileEnabled
+    MobileToggle.Text = isMobileEnabled and "Disable Mobile GUI" or "Enable Mobile GUI"
+    MainFrame.Visible = isMobileEnabled
+end)
+
+PCToggle.MouseButton1Click:Connect(function()
+    isPCEnabled = not isPCEnabled
+    PCToggle.Text = isPCEnabled and "Disable PC GUI" or "Enable PC GUI"
+    MainFrame.Visible = isPCEnabled
 end)
 
 LoadoutButton1.MouseButton1Click:Connect(function()
-    if not isEnabled then return end
+    if not (isPCEnabled or isMobileEnabled) then return end
 
     local function invokePickupTool(itemName)
         local pickupTool = workspace.Services and workspace.Services:FindFirstChild("PickupTool")
