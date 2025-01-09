@@ -2,6 +2,23 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Ngigerngieofoepdo/Ver
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Ngigerngieofoepdo/BetterFindAMopImGettingStickyInHisBitch/refs/heads/main/Idkdkdkyes"))()
 
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "LoadoutV1", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+local Tab = Window:MakeTab({
+	Name = "Loadouts",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+OrionLib:MakeNotification({
+	Name = "Hi!",
+	Content = "Welcome!",
+	Image = "rbxassetid://4483345998",
+	Time = 5
+})
+Tab:AddButton({
+	Name = "Protection Loadout",
+	Callback = function()
+
 local function invokePickupTool(itemName)
     local pickupTool = workspace.Services and workspace.Services:FindFirstChild("PickupTool")
     if pickupTool then
@@ -58,3 +75,8 @@ local function teleportAndPickup()
 end
 
 teleportAndPickup()
+  	end    
+})
+
+OrionLib:Init()
+-- destroying the interface: OrionLib:Destroy()
