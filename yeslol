@@ -1,44 +1,41 @@
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-751.308716, 120.934639, -3174.425537))
+-- Function to invoke the server with standardized arguments
+local function invokePickupTool(artifactName)
+    local args = {
+        [1] = "#*@78379411361116949753",  -- This may be a placeholder, adjust as needed
+        [2] = artifactName
+    }
+    workspace.Services.PickupTool:InvokeServer(unpack(args))
+end
 
-while wait(0.5) do
+-- Teleport and invoke pickup for various artifacts
+local function teleportAndPickup()
+    -- Teleport to the first location
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-751.308716, 120.934639, -3174.425537))
+    while wait(0.5) do
+        invokePickupTool("Artifact C#615")
+        break  -- Added break to avoid infinite loop for this section
+    end
 
-local args = {
-    [1] = "#*@78379411361116949753",
-    [2] = "Artifact C#615"
-}
+    -- Teleport to the second location
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(1405.102051, -253.162231, -1853.779907))
+    while wait(0.5) do
+        invokePickupTool("Artifact B#615")
+        break  -- Added break to avoid infinite loop for this section
+    end
 
-workspace.Services.PickupTool:InvokeServer(unpack(args))
+    -- Repeat for the next locations
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(1405.102051, -253.162231, -1853.779907))
+    while wait(0.5) do
+        invokePickupTool("Artifact A#286")
+        break  -- Added break to avoid infinite loop for this section
+    end
 
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(1405.102051, -253.162231, -1853.779907))
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-1375.454712, 175.646347, -1501.651001))
+    while wait(0.5) do
+        invokePickupTool("Gatling Gun#490")
+        break  -- Added break to avoid infinite loop for this section
+    end
+end
 
-while wait (0.5) do
-
-local args = {
-    [1] = "#*@78379411361116949753",
-    [2] = "Artifact B#615"
-}
-
-workspace.Services.PickupTool:InvokeServer(unpack(args))
-
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(1405.102051, -253.162231, -1853.779907))
-
-while wait (0.5) do
-
-local args = {
-    [1] = "#*@78379411361116949753",
-    [2] = "Artifact A#286"
-}
-
-workspace.Services.PickupTool:InvokeServer(unpack(args))
-
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-1375.454712, 175.646347, -1501.651001))
-
-while wait(0.5) do
-
-local args = {
-    [1] = "#*@78379411361116949753",
-    [2] = "Gatling Gun#490"
-}
-
-workspace.Services.PickupTool:InvokeServer(unpack(args))
-
+-- Start the teleport and pickup process
+teleportAndPickup()
