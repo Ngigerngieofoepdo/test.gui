@@ -1,6 +1,4 @@
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Ngigerngieofoepdo/VersionTwo/refs/heads/main/Dalgona"))()
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Ngigerngieofoepdo/BetterFindAMopImGettingStickyInHisBitch/refs/heads/main/Idkdkdkyes"))()
 
 -- Load Orion Library
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
