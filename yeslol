@@ -11,13 +11,13 @@ local function teleportToChild()
     -- Get the target position
     local target = workspace.Map.Main:GetChildren()[13]
 
-    -- Check if the target exists and is a valid BasePart
-    if target and target:IsA("BasePart") then
-        -- Teleport the player to the target position
+    -- Check if the target exists
+    if target then
+        -- Set the CFrame of the HumanoidRootPart to the target's CFrame
         humanoidRootPart.CFrame = target.CFrame
         print("Teleported to: " .. target.Name)
     else
-        print("Target does not exist or is not a valid BasePart.")
+        print("Target does not exist.")
     end
 end
 
