@@ -1,0 +1,25 @@
+-- Get the necessary services
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+-- Function to teleport the player
+local function teleportToChild()
+    -- Wait until the player's character is available
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+    -- Get the target position
+    local target = workspace.Map.Main:GetChildren()[13]
+
+    -- Check if the target exists and is a valid BasePart
+    if target and target:IsA("BasePart") then
+        -- Teleport the player to the target position
+        humanoidRootPart.CFrame = target.CFrame
+        print("Teleported to: " .. target.Name)
+    else
+        print("Target does not exist or is not a valid BasePart.")
+    end
+end
+
+-- Call the function to teleport the player
+teleportToChild()
