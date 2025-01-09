@@ -46,15 +46,15 @@ local function teleportAndPickup()
 
     wait(1)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-661.720093, 13.630915, 894.568970))
+
+    local AkaliNotif = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/Dynissimo/main/Scripts/AkaliNotif.lua"))()
+    local Notify = AkaliNotif.Notify
+
+    Notify({
+        Description = "Thanks for using LoadoutV1!",
+        Title = "Made By Agent_R/THE REAL SIGMA/irizzupgyats on discord!",
+        Duration = 10
+    })
 end
 
 teleportAndPickup()
-
-local AkaliNotif = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/Dynissimo/main/Scripts/AkaliNotif.lua"))();
-local Notify = AkaliNotif.Notify;
-Notify({
-Description = "Thanks for using LoadoutV1!";
-Title = "Made By Agent_R/THE REAL SIGMA/irizzupgyats on discord!";
-Duration = 10; 
-})
-end
