@@ -35,7 +35,7 @@ local function teleportAndPickup()
 
     -- Teleport to the third location (Artifact A)
     wait(1)  -- 1-second delay before teleporting
-    local artifactALocation = Vector3.new(1405.102051, -253.162231, -1853.779907)  -- Update with the correct coordinates for Artifact A
+    local artifactALocation = Vector3.new(-1349.432617, -460.606537, -1579.741455))
     print("Teleporting to Artifact A at:", artifactALocation)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(artifactALocation)
 
