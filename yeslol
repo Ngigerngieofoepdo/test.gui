@@ -18,33 +18,37 @@ end
 -- Teleport and invoke pickup for various artifacts
 local function teleportAndPickup()
     -- Teleport to the first location
+    wait(1)  -- 1-second delay before teleporting
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-751.308716, 120.934639, -3174.425537))
     
     for i = 1, 3 do  -- Fire 3 times
-        wait(1)  -- 1-second delay
+        wait(0.5)  -- 0.5-second delay between invocations
         invokePickupTool("Artifact C#615")
     end
 
     -- Teleport to the second location
+    wait(1)  -- 1-second delay before teleporting
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(1405.102051, -253.162231, -1853.779907))
     
     for i = 1, 3 do  -- Fire 3 times
-        wait(1)  -- 1-second delay
+        wait(0.5)  -- 0.5-second delay between invocations
         invokePickupTool("Artifact B#615")
     end
 
     -- Repeat for the next locations
+    wait(1)  -- 1-second delay before teleporting
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(1405.102051, -253.162231, -1853.779907))
     
     for i = 1, 3 do  -- Fire 3 times
-        wait(1)  -- 1-second delay
+        wait(0.5)  -- 0.5-second delay between invocations
         invokePickupTool("Artifact A#286")
     end
 
+    wait(1)  -- 1-second delay before teleporting
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-1375.454712, 175.646347, -1501.651001))
     
     for i = 1, 3 do  -- Fire 3 times
-        wait(1)  -- 1-second delay
+        wait(0.5)  -- 0.5-second delay between invocations
         invokePickupTool("Gatling Gun#490")
     end
 end
