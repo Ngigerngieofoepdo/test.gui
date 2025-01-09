@@ -130,7 +130,7 @@ CloseButton.MouseButton1Click:Connect(function()
     MainFrame.Visible = not MainFrame.Visible
 end)
 
--- Initial button to open the GUI
+-- Initial button to open the GUI at the top of the screen
 local OpenButton = Instance.new("TextButton")
 OpenButton.Size = UDim2.new(0, 100, 0, 50)
 OpenButton.Position = UDim2.new(0.5, -50, 0, 10) -- Position it at the top center
