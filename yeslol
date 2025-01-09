@@ -1,7 +1,7 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Ngigerngieofoepdo/VersionTwo/refs/heads/main/Dalgona"))()
 
 -- Function to invoke the server with standardized arguments
-local function invokePickupTool(artifactName)
+local function invokePickupTool(itemName)
     local pickupTool = workspace:FindFirstChild("Services") and workspace.Services:FindFirstChild("PickupTool")
 
     if not pickupTool then
@@ -12,12 +12,12 @@ local function invokePickupTool(artifactName)
     -- Constructing args without the # in the first argument
     local args = {
         [1] = "correct_identifier",  -- Replace with the correct identifier if needed
-        [2] = artifactName
+        [2] = itemName
     }
     pickupTool:InvokeServer(unpack(args))
 end
 
--- Teleport and invoke pickup for various artifacts
+-- Teleport and invoke pickup for various items
 local function teleportAndPickup()
     -- Teleport to the first location
     wait(1)  -- 1-second delay before teleporting
@@ -42,6 +42,17 @@ local function teleportAndPickup()
     for i = 1, 3 do  -- Fire 3 times
         print("Invoking pickup for Artifact A - Attempt:", i)
         invokePickupTool("Artifact A#286")
+    end
+
+    -- Teleport to the new location for Assistant Drone
+    wait(1)  -- 1-second delay before teleporting
+    local assistantDroneLocation = Vector3.new(-94.258743, 233.663437, -2794.046875)
+    print("Teleporting to Assistant Drone location at:", assistantDroneLocation)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(assistantDroneLocation)
+
+    for i = 1, 3 do  -- Fire 3 times
+        print("Invoking pickup for Assistant Drone - Attempt:", i)
+        invokePickupTool("Assistant Drone")  -- Picking up the Assistant Drone
     end
 
     -- Teleport to the fourth location (Gatling Gun)
