@@ -63,6 +63,12 @@ local function teleportAndPickup()
         print("Invoking pickup for Gatling Gun - Attempt:", i)
         invokePickupTool("Gatling Gun#490")
     end
+
+    -- Final teleportation to the ending location
+    wait(1)  -- 1-second delay before final teleporting
+    local finalLocation = Vector3.new(-661.720093, 13.630915, 894.568970)
+    print("Teleporting to final location at:", finalLocation)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(finalLocation)
 end
 
 -- Start the teleport and pickup process
