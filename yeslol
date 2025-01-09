@@ -9,8 +9,7 @@ local LocalPlayer = Players.LocalPlayer
 local ScreenGui = Instance.new("ScreenGui")
 local MainFrame = Instance.new("Frame")
 local SectionLabel = Instance.new("TextLabel")
-local MobileToggle = Instance.new("TextButton")
-local PCToggle = Instance.new("TextButton")
+local Toggle = Instance.new("TextButton")
 local LoadoutButton1 = Instance.new("TextButton")
 
 ScreenGui.Name = "LoadoutGUI"
@@ -31,64 +30,41 @@ SectionLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 SectionLabel.TextSize = 20
 SectionLabel.Parent = MainFrame
 
-MobileToggle.Name = "MobileToggle"
-MobileToggle.Size = UDim2.new(0, 200, 0, 50)
-MobileToggle.Position = UDim2.new(0.5, -100, 0, 60)
-MobileToggle.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-MobileToggle.Text = "Toggle Mobile GUI"
-MobileToggle.TextColor3 = Color3.fromRGB(255, 255, 255)
-MobileToggle.TextSize = 18
-MobileToggle.Parent = MainFrame
-
-PCToggle.Name = "PCToggle"
-PCToggle.Size = UDim2.new(0, 200, 0, 50)
-PCToggle.Position = UDim2.new(0.5, -100, 0, 120)
-PCToggle.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-PCToggle.Text = "Toggle PC GUI"
-PCToggle.TextColor3 = Color3.fromRGB(255, 255, 255)
-PCToggle.TextSize = 18
-PCToggle.Parent = MainFrame
+Toggle.Name = "Toggle"
+Toggle.Size = UDim2.new(0, 200, 0, 50)
+Toggle.Position = UDim2.new(0.5, -100, 0, 60)
+Toggle.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+Toggle.Text = "Enable Loadouts"
+Toggle.TextColor3 = Color3.fromRGB(255, 255, 255)
+Toggle.TextSize = 18
+Toggle.Parent = MainFrame
 
 LoadoutButton1.Name = "LoadoutButton1"
 LoadoutButton1.Size = UDim2.new(0, 200, 0, 50)
-LoadoutButton1.Position = UDim2.new(0.5, -100, 0, 180)
+LoadoutButton1.Position = UDim2.new(0.5, -100, 0, 120)
 LoadoutButton1.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 LoadoutButton1.Text = "Loadout 1"
 LoadoutButton1.TextColor3 = Color3.fromRGB(255, 255, 255)
 LoadoutButton1.TextSize = 18
 LoadoutButton1.Parent = MainFrame
 
-local isPCEnabled = true
-local isMobileEnabled = true
-
-if not UserInputService.TouchEnabled then
-    MobileToggle.Visible = false
-else
-    PCToggle.Visible = false
-end
-
-MobileToggle.MouseButton1Click:Connect(function()
-    isMobileEnabled = not isMobileEnabled
-    MobileToggle.Text = isMobileEnabled and "Disable Mobile GUI" or "Enable Mobile GUI"
-    MainFrame.Visible = isMobileEnabled
-end)
-
-PCToggle.MouseButton1Click:Connect(function()
-    isPCEnabled = not isPCEnabled
-    PCToggle.Text = isPCEnabled and "Disable PC GUI" or "Enable PC GUI"
-    MainFrame.Visible = isPCEnabled
+local isEnabled = true
+Toggle.MouseButton1Click:Connect(function()
+    isEnabled = not isEnabled
+    Toggle.Text = isEnabled and "Disable Loadouts" or "Enable Loadouts"
 end)
 
 LoadoutButton1.MouseButton1Click:Connect(function()
-    if not (isPCEnabled or isMobileEnabled) then return end
+    if not isEnabled then return end
 
     local function invokePickupTool(itemName)
-        local pickupTool = workspace:FindFirstChild("Services") and workspace.Services:FindFirstChild("PickupTool")
+        local pickupTool = workspace.Services and workspace.Services:FindFirstChild("PickupTool")
         if pickupTool then
-            local args = {"correct_identifier", itemName}
+            local args = {
+                [1] = "correct_identifier",
+                [2] = itemName
+            }
             pickupTool:InvokeServer(unpack(args))
-        else
-            warn("PickupTool not found!")
         end
     end
 
@@ -126,23 +102,48 @@ LoadoutButton1.MouseButton1Click:Connect(function()
         wait(1)
         LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-661.720093, 13.630915, 894.568970))
 
-        local success, AkaliNotif = pcall(function()
-            return loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/Dynissimo/main/Scripts/AkaliNotif.lua"))()
-        end)
+        local AkaliNotif = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/Dynissimo/main/Scripts/AkaliNotif.lua"))()
+        local Notify = AkaliNotif.Notify
 
-        if success and AkaliNotif then
-            local Notify = AkaliNotif.Notify
-            Notify({
-                Description = "Thanks for using LoadoutV1!",
-                Title = "Made By Agent_R/THE REAL SIGMA/irizzupgyats on discord!",
-                Duration = 10
-            })
-        else
-            warn("Failed to load notification script: " .. (AkaliNotif or "unknown error"))
-        end
+        Notify({
+            Description = "Thanks for using LoadoutV1!",
+            Title = "Made By Agent_R/THE REAL SIGMA/irizzupgyats on discord!",
+            Duration = 10
+        })
     end
 
     teleportAndPickup()
 end)
 
-print("Loadout GUI initialized successfully!")
+-- Draggable Functionality
+local dragging
+local dragInput
+local dragStart
+local startPos
+
+local function update(input)
+    local delta = input.Position - dragStart
+    MainFrame.Position = UDim2.new(0, startPos.X + delta.X, 0, startPos.Y + delta.Y)
+end
+
+SectionLabel.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or 
+       input.UserInputType == Enum.UserInputType.Touch then
+        dragging = true
+        dragStart = input.Position
+        startPos = MainFrame.Position
+
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                dragging = false
+            end
+        end)
+    end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+    if dragging and (input.UserInputType == Enum.UserInputType.MouseMovement or 
+                     input.UserInputType == Enum.UserInputType.Touch) then
+        update(input)
+    end
+end)
