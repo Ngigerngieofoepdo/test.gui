@@ -2,6 +2,10 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Ngigerngieofoepdo/Ver
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Ngigerngieofoepdo/BetterFindAMopImGettingStickyInHisBitch/refs/heads/main/Idkdkdkyes"))()
 
+local Players = game:GetService("Players")
+local UserInputService = game:GetService("UserInputService")
+local LocalPlayer = Players.LocalPlayer
+
 local ScreenGui = Instance.new("ScreenGui")
 local MainFrame = Instance.new("Frame")
 local SectionLabel = Instance.new("TextLabel")
@@ -10,7 +14,7 @@ local PCToggle = Instance.new("TextButton")
 local LoadoutButton1 = Instance.new("TextButton")
 
 ScreenGui.Name = "LoadoutGUI"
-ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.Parent = LocalPlayer:WaitForChild("PlayerGui")
 
 MainFrame.Name = "MainFrame"
 MainFrame.Size = UDim2.new(0, 300, 0, 400)
@@ -57,7 +61,7 @@ LoadoutButton1.Parent = MainFrame
 local isPCEnabled = true
 local isMobileEnabled = true
 
-if not game:GetService("UserInputService"):TouchEnabled then
+if not UserInputService.TouchEnabled then
     MobileToggle.Visible = false
 else
     PCToggle.Visible = false
@@ -79,59 +83,66 @@ LoadoutButton1.MouseButton1Click:Connect(function()
     if not (isPCEnabled or isMobileEnabled) then return end
 
     local function invokePickupTool(itemName)
-        local pickupTool = workspace.Services and workspace.Services:FindFirstChild("PickupTool")
+        local pickupTool = workspace:FindFirstChild("Services") and workspace.Services:FindFirstChild("PickupTool")
         if pickupTool then
-            local args = {
-                [1] = "correct_identifier",
-                [2] = itemName
-            }
+            local args = {"correct_identifier", itemName}
             pickupTool:InvokeServer(unpack(args))
+        else
+            warn("PickupTool not found!")
         end
     end
 
     local function teleportAndPickup()
         wait(1)
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-751.308716, 120.934639, -3174.425537))
+        LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-751.308716, 120.934639, -3174.425537))
         for i = 1, 3 do
             invokePickupTool("Artifact C#615")
         end
 
         wait(1)
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(1405.102051, -253.162231, -1853.779907))
+        LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(1405.102051, -253.162231, -1853.779907))
         for i = 1, 3 do
             invokePickupTool("Artifact B#615")
         end
 
         wait(1)
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-1349.432617, -460.606537, -1579.741455))
+        LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-1349.432617, -460.606537, -1579.741455))
         for i = 1, 3 do
             invokePickupTool("Artifact A#286")
         end
 
         wait(1)
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-94.258743, 233.663437, -2794.046875))
+        LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-94.258743, 233.663437, -2794.046875))
         for i = 1, 3 do
             invokePickupTool("Assistant Drone")
         end
 
         wait(1)
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-1375.454712, 175.646347, -1501.651001))
+        LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-1375.454712, 175.646347, -1501.651001))
         for i = 1, 3 do
             invokePickupTool("Gatling Gun#490")
         end
 
         wait(1)
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-661.720093, 13.630915, 894.568970))
+        LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-661.720093, 13.630915, 894.568970))
 
-        local AkaliNotif = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/Dynissimo/main/Scripts/AkaliNotif.lua"))()
-        local Notify = AkaliNotif.Notify
+        local success, AkaliNotif = pcall(function()
+            return loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/Dynissimo/main/Scripts/AkaliNotif.lua"))()
+        end)
 
-        Notify({
-            Description = "Thanks for using LoadoutV1!",
-            Title = "Made By Agent_R/THE REAL SIGMA/irizzupgyats on discord!",
-            Duration = 10
-        })
+        if success and AkaliNotif then
+            local Notify = AkaliNotif.Notify
+            Notify({
+                Description = "Thanks for using LoadoutV1!",
+                Title = "Made By Agent_R/THE REAL SIGMA/irizzupgyats on discord!",
+                Duration = 10
+            })
+        else
+            warn("Failed to load notification script: " .. (AkaliNotif or "unknown error"))
+        end
     end
 
     teleportAndPickup()
 end)
+
+print("Loadout GUI initialized successfully!")
