@@ -2,76 +2,50 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Ngigerngieofoepdo/Ver
 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Ngigerngieofoepdo/BetterFindAMopImGettingStickyInHisBitch/refs/heads/main/Idkdkdkyes"))()
 
--- Function to invoke the server with standardized arguments
 local function invokePickupTool(itemName)
-    local pickupTool = workspace:FindFirstChild("Services") and workspace.Services:FindFirstChild("PickupTool")
-
-    if not pickupTool then
-        warn("PickupTool does not exist.")
-        return
+    local pickupTool = workspace.Services and workspace.Services:FindFirstChild("PickupTool")
+    if pickupTool then
+        local args = {
+            [1] = "correct_identifier",
+            [2] = itemName
+        }
+        pickupTool:InvokeServer(unpack(args))
     end
-
-    -- Constructing args without the # in the first argument
-    local args = {
-        [1] = "correct_identifier",  -- Replace with the correct identifier if needed
-        [2] = itemName
-    }
-    pickupTool:InvokeServer(unpack(args))
 end
 
--- Teleport and invoke pickup for various items
 local function teleportAndPickup()
-    -- Teleport to the first location
-    wait(1)  -- 1-second delay before teleporting
+    wait(1)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-751.308716, 120.934639, -3174.425537))
-    for i = 1, 3 do  -- Fire 3 times
+    for i = 1, 3 do
         invokePickupTool("Artifact C#615")
     end
 
-    -- Teleport to the second location
-    wait(1)  -- 1-second delay before teleporting
+    wait(1)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(1405.102051, -253.162231, -1853.779907))
-    for i = 1, 3 do  -- Fire 3 times
+    for i = 1, 3 do
         invokePickupTool("Artifact B#615")
     end
 
-    -- Teleport to the new location for Artifact A
-    wait(1)  -- 1-second delay before teleporting
-    local artifactALocation = Vector3.new(-1349.432617, -460.606537, -1579.741455)
-    print("Teleporting to Artifact A at:", artifactALocation)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(artifactALocation)
-
-    for i = 1, 3 do  -- Fire 3 times
-        print("Invoking pickup for Artifact A - Attempt:", i)
+    wait(1)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-1349.432617, -460.606537, -1579.741455))
+    for i = 1, 3 do
         invokePickupTool("Artifact A#286")
     end
 
-    -- Teleport to the new location for Assistant Drone
-    wait(1)  -- 1-second delay before teleporting
-    local assistantDroneLocation = Vector3.new(-94.258743, 233.663437, -2794.046875)
-    print("Teleporting to Assistant Drone location at:", assistantDroneLocation)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(assistantDroneLocation)
-
-    for i = 1, 3 do  -- Fire 3 times
-        print("Invoking pickup for Assistant Drone - Attempt:", i)
-        invokePickupTool("Assistant Drone")  -- Picking up the Assistant Drone
+    wait(1)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-94.258743, 233.663437, -2794.046875))
+    for i = 1, 3 do
+        invokePickupTool("Assistant Drone")
     end
 
-    -- Teleport to the fourth location (Gatling Gun)
-    wait(1)  -- 1-second delay before teleporting
-    print("Teleporting to Gatling Gun location")
+    wait(1)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-1375.454712, 175.646347, -1501.651001))
-    for i = 1, 3 do  -- Fire 3 times
-        print("Invoking pickup for Gatling Gun - Attempt:", i)
+    for i = 1, 3 do
         invokePickupTool("Gatling Gun#490")
     end
 
-    -- Final teleportation to the ending location
-    wait(1)  -- 1-second delay before final teleporting
-    local finalLocation = Vector3.new(-661.720093, 13.630915, 894.568970)
-    print("Teleporting to final location at:", finalLocation)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(finalLocation)
+    wait(1)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-661.720093, 13.630915, 894.568970))
 end
 
--- Start the teleport and pickup process
 teleportAndPickup()
