@@ -1,25 +1,44 @@
--- Get the necessary services
-local Players = game:GetService("Players")
-local player = Players.LocalPlayer
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-751.308716, 120.934639, -3174.425537))
 
--- Function to teleport the player
-local function teleportToChild()
-    -- Wait until the player's character is available
-    local character = player.Character or player.CharacterAdded:Wait()
-    local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+while wait(0.5) do
 
-    -- Get the target position
-    local target = workspace.Map.Main:GetChildren()[13]
+local args = {
+    [1] = "#*@78379411361116949753",
+    [2] = "Artifact C#615"
+}
 
-    -- Check if the target exists
-    if target then
-        -- Set the CFrame of the HumanoidRootPart to the target's CFrame
-        humanoidRootPart.CFrame = target.CFrame
-        print("Teleported to: " .. target.Name)
-    else
-        print("Target does not exist.")
-    end
-end
+workspace.Services.PickupTool:InvokeServer(unpack(args))
 
--- Call the function to teleport the player
-teleportToChild()
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(1405.102051, -253.162231, -1853.779907))
+
+while wait (0.5) do
+
+local args = {
+    [1] = "#*@78379411361116949753",
+    [2] = "Artifact B#615"
+}
+
+workspace.Services.PickupTool:InvokeServer(unpack(args))
+
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(1405.102051, -253.162231, -1853.779907))
+
+while wait (0.5) do
+
+local args = {
+    [1] = "#*@78379411361116949753",
+    [2] = "Artifact A#286"
+}
+
+workspace.Services.PickupTool:InvokeServer(unpack(args))
+
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-1375.454712, 175.646347, -1501.651001))
+
+while wait(0.5) do
+
+local args = {
+    [1] = "#*@78379411361116949753",
+    [2] = "Gatling Gun#490"
+}
+
+workspace.Services.PickupTool:InvokeServer(unpack(args))
+
