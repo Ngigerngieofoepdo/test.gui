@@ -35,15 +35,21 @@ local function teleportAndPickup()
 
     -- Teleport to the third location (Artifact A)
     wait(1)  -- 1-second delay before teleporting
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(1405.102051, -253.162231, -1853.779907))  -- Adjust to the correct coordinates for Artifact A
+    local artifactALocation = Vector3.new(1405.102051, -253.162231, -1853.779907)  -- Update with the correct coordinates for Artifact A
+    print("Teleporting to Artifact A at:", artifactALocation)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(artifactALocation)
+
     for i = 1, 3 do  -- Fire 3 times
+        print("Invoking pickup for Artifact A - Attempt:", i)
         invokePickupTool("Artifact A#286")
     end
 
     -- Teleport to the fourth location (Gatling Gun)
     wait(1)  -- 1-second delay before teleporting
+    print("Teleporting to Gatling Gun location")
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-1375.454712, 175.646347, -1501.651001))
     for i = 1, 3 do  -- Fire 3 times
+        print("Invoking pickup for Gatling Gun - Attempt:", i)
         invokePickupTool("Gatling Gun#490")
     end
 end
