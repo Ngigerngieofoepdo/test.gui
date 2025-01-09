@@ -11,6 +11,7 @@ local MainFrame = Instance.new("Frame")
 local SectionLabel = Instance.new("TextLabel")
 local Toggle = Instance.new("TextButton")
 local LoadoutButton1 = Instance.new("TextButton")
+local CloseButton = Instance.new("TextButton")
 
 ScreenGui.Name = "LoadoutGUI"
 ScreenGui.Parent = LocalPlayer:WaitForChild("PlayerGui")
@@ -20,6 +21,7 @@ MainFrame.Size = UDim2.new(0, 300, 0, 400)
 MainFrame.Position = UDim2.new(0.5, -150, 0.5, -200)
 MainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 MainFrame.Parent = ScreenGui
+MainFrame.Visible = false -- Start as hidden
 
 SectionLabel.Name = "SectionLabel"
 SectionLabel.Size = UDim2.new(1, 0, 0, 50)
@@ -47,6 +49,15 @@ LoadoutButton1.Text = "Loadout 1"
 LoadoutButton1.TextColor3 = Color3.fromRGB(255, 255, 255)
 LoadoutButton1.TextSize = 18
 LoadoutButton1.Parent = MainFrame
+
+CloseButton.Name = "CloseButton"
+CloseButton.Size = UDim2.new(0, 50, 0, 50)
+CloseButton.Position = UDim2.new(1, -60, 0, 0) -- Position it at the top right corner
+CloseButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+CloseButton.Text = "X"
+CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+CloseButton.TextSize = 20
+CloseButton.Parent = MainFrame
 
 local isEnabled = true
 Toggle.MouseButton1Click:Connect(function()
@@ -115,35 +126,20 @@ LoadoutButton1.MouseButton1Click:Connect(function()
     teleportAndPickup()
 end)
 
--- Draggable Functionality
-local dragging
-local dragInput
-local dragStart
-local startPos
-
-local function update(input)
-    local delta = input.Position - dragStart
-    MainFrame.Position = UDim2.new(0, startPos.X + delta.X, 0, startPos.Y + delta.Y)
-end
-
-SectionLabel.InputBegan:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton1 or 
-       input.UserInputType == Enum.UserInputType.Touch then
-        dragging = true
-        dragStart = input.Position
-        startPos = MainFrame.Position
-
-        input.Changed:Connect(function()
-            if input.UserInputState == Enum.UserInputState.End then
-                dragging = false
-            end
-        end)
-    end
+CloseButton.MouseButton1Click:Connect(function()
+    MainFrame.Visible = not MainFrame.Visible
 end)
 
-UserInputService.InputChanged:Connect(function(input)
-    if dragging and (input.UserInputType == Enum.UserInputType.MouseMovement or 
-                     input.UserInputType == Enum.UserInputType.Touch) then
-        update(input)
-    end
+-- Initial button to open the GUI
+local OpenButton = Instance.new("TextButton")
+OpenButton.Size = UDim2.new(0, 100, 0, 50)
+OpenButton.Position = UDim2.new(0.5, -50, 0, 10) -- Position it at the top center
+OpenButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+OpenButton.Text = "Open"
+OpenButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+OpenButton.TextSize = 20
+OpenButton.Parent = ScreenGui
+
+OpenButton.MouseButton1Click:Connect(function()
+    MainFrame.Visible = true
 end)
