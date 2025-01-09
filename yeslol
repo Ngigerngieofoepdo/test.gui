@@ -1,40 +1,40 @@
 -- Function to invoke the server with standardized arguments
 local function invokePickupTool(artifactName)
+    local pickupTool = workspace:FindFirstChild("Services") and workspace.Services:FindFirstChild("PickupTool")
+
+    if not pickupTool then
+        warn("PickupTool does not exist.")
+        return
+    end
+
+    -- Constructing args without the # in the first argument
     local args = {
-        [1] = "#*@78379411361116949753",  -- This may be a placeholder, adjust as needed
+        [1] = "correct_identifier",  -- Replace with the correct identifier if needed
         [2] = artifactName
     }
-    workspace.Services.PickupTool:InvokeServer(unpack(args))
+    pickupTool:InvokeServer(unpack(args))
 end
 
 -- Teleport and invoke pickup for various artifacts
 local function teleportAndPickup()
     -- Teleport to the first location
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-751.308716, 120.934639, -3174.425537))
-    while wait(0.5) do
-        invokePickupTool("Artifact C#615")
-        break  -- Added break to avoid infinite loop for this section
-    end
+    wait(0.5)  -- Wait before invoking
+    invokePickupTool("Artifact C#615")
 
     -- Teleport to the second location
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(1405.102051, -253.162231, -1853.779907))
-    while wait(0.5) do
-        invokePickupTool("Artifact B#615")
-        break  -- Added break to avoid infinite loop for this section
-    end
+    wait(0.5)  -- Wait before invoking
+    invokePickupTool("Artifact B#615")
 
     -- Repeat for the next locations
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(1405.102051, -253.162231, -1853.779907))
-    while wait(0.5) do
-        invokePickupTool("Artifact A#286")
-        break  -- Added break to avoid infinite loop for this section
-    end
+    wait(0.5)  -- Wait before invoking
+    invokePickupTool("Artifact A#286")
 
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-1375.454712, 175.646347, -1501.651001))
-    while wait(0.5) do
-        invokePickupTool("Gatling Gun#490")
-        break  -- Added break to avoid infinite loop for this section
-    end
+    wait(0.5)  -- Wait before invoking
+    invokePickupTool("Gatling Gun#490")
 end
 
 -- Start the teleport and pickup process
