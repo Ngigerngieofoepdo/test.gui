@@ -1,28 +1,21 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Ngigerngieofoepdo/VersionTwo/refs/heads/main/Dalgona"))()
-
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Ngigerngieofoepdo/BetterFindAMopImGettingStickyInHisBitch/refs/heads/main/Idkdkdkyes"))()
 
 local Players = game:GetService("Players")
-local UserInputService = game:GetService("UserInputService")
 local LocalPlayer = Players.LocalPlayer
 
 local ScreenGui = Instance.new("ScreenGui")
-local MainFrame = Instance.new("Frame")
-local SectionLabel = Instance.new("TextLabel")
-local Toggle = Instance.new("TextButton")
-local LoadoutButton1 = Instance.new("TextButton")
-local CloseButton = Instance.new("TextButton")
-
 ScreenGui.Name = "LoadoutGUI"
 ScreenGui.Parent = LocalPlayer:WaitForChild("PlayerGui")
 
+local MainFrame = Instance.new("Frame")
 MainFrame.Name = "MainFrame"
 MainFrame.Size = UDim2.new(0, 300, 0, 400)
 MainFrame.Position = UDim2.new(0.5, -150, 0.5, -200)
 MainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 MainFrame.Parent = ScreenGui
-MainFrame.Visible = false -- Start as hidden
 
+local SectionLabel = Instance.new("TextLabel")
 SectionLabel.Name = "SectionLabel"
 SectionLabel.Size = UDim2.new(1, 0, 0, 50)
 SectionLabel.Position = UDim2.new(0, 0, 0, 0)
@@ -32,15 +25,17 @@ SectionLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 SectionLabel.TextSize = 20
 SectionLabel.Parent = MainFrame
 
-Toggle.Name = "Toggle"
-Toggle.Size = UDim2.new(0, 200, 0, 50)
-Toggle.Position = UDim2.new(0.5, -100, 0, 60)
-Toggle.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-Toggle.Text = "Enable Loadouts"
-Toggle.TextColor3 = Color3.fromRGB(255, 255, 255)
-Toggle.TextSize = 18
-Toggle.Parent = MainFrame
+local ToggleLoadoutsButton = Instance.new("TextButton")
+ToggleLoadoutsButton.Name = "ToggleLoadoutsButton"
+ToggleLoadoutsButton.Size = UDim2.new(0, 200, 0, 50)
+ToggleLoadoutsButton.Position = UDim2.new(0.5, -100, 0, 60)
+ToggleLoadoutsButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+ToggleLoadoutsButton.Text = "Enable Loadouts"
+ToggleLoadoutsButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+ToggleLoadoutsButton.TextSize = 18
+ToggleLoadoutsButton.Parent = MainFrame
 
+local LoadoutButton1 = Instance.new("TextButton")
 LoadoutButton1.Name = "LoadoutButton1"
 LoadoutButton1.Size = UDim2.new(0, 200, 0, 50)
 LoadoutButton1.Position = UDim2.new(0.5, -100, 0, 120)
@@ -50,96 +45,218 @@ LoadoutButton1.TextColor3 = Color3.fromRGB(255, 255, 255)
 LoadoutButton1.TextSize = 18
 LoadoutButton1.Parent = MainFrame
 
+local CloseButton = Instance.new("TextButton")
 CloseButton.Name = "CloseButton"
 CloseButton.Size = UDim2.new(0, 50, 0, 50)
-CloseButton.Position = UDim2.new(1, -60, 0, 0) -- Position it at the top right corner
+CloseButton.Position = UDim2.new(1, -60, 0, 0)
 CloseButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 CloseButton.Text = "X"
 CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 CloseButton.TextSize = 20
 CloseButton.Parent = MainFrame
 
+local NextPageButton = Instance.new("TextButton")
+NextPageButton.Name = "NextPageButton"
+NextPageButton.Size = UDim2.new(0, 200, 0, 50)
+NextPageButton.Position = UDim2.new(0.5, -100, 1, -60)
+NextPageButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+NextPageButton.Text = "Next Page"
+NextPageButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+NextPageButton.TextSize = 18
+NextPageButton.Parent = MainFrame
+
 local isEnabled = true
-Toggle.MouseButton1Click:Connect(function()
+
+ToggleLoadoutsButton.MouseButton1Click:Connect(function()
     isEnabled = not isEnabled
-    Toggle.Text = isEnabled and "Disable Loadouts" or "Enable Loadouts"
+    ToggleLoadoutsButton.Text = isEnabled and "Disable Loadouts" or "Enable Loadouts"
 end)
 
+local function invokePickupTool(itemName)
+    local pickupTool = workspace.Services and workspace.Services:FindFirstChild("PickupTool")
+    if pickupTool then
+        local args = {
+            [1] = "correct_identifier",
+            [2] = itemName
+        }
+        pickupTool:InvokeServer(unpack(args))
+    end
+end
+
+local function teleportAndPickupLoadout1()
+    wait(1)
+    LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-751.308716, 120.934639, -3174.425537))
+    for i = 1, 3 do
+        invokePickupTool("Artifact C#615")
+    end
+
+    wait(1)
+    LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(1405.102051, -253.162231, -1853.779907))
+    for i = 1, 3 do
+        invokePickupTool("Artifact B#615")
+    end
+
+    wait(1)
+    LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-1349.432617, -460.606537, -1579.741455))
+    for i = 1, 3 do
+        invokePickupTool("Artifact A#286")
+    end
+
+    wait(1)
+    LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-94.258743, 233.663437, -2794.046875))
+    for i = 1, 3 do
+        invokePickupTool("Assistant Drone")
+    end
+
+    wait(1)
+    LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-1375.454712, 175.646347, -1501.651001))
+    for i = 1, 3 do
+        invokePickupTool("Gatling Gun#490")
+    end
+
+    wait(1)
+    LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-661.720093, 13.630915, 894.568970))
+
+    local AkaliNotif = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/Dynissimo/main/Scripts/AkaliNotif.lua"))()
+    local Notify = AkaliNotif.Notify
+
+    Notify({
+        Description = "Thanks for using LoadoutV1!",
+        Title = "Made By Agent_R/THE REAL SIGMA/irizzupgyats on discord!",
+        Duration = 10
+    })
+end
+
 LoadoutButton1.MouseButton1Click:Connect(function()
-    if not isEnabled then return end
-
-    local function invokePickupTool(itemName)
-        local pickupTool = workspace.Services and workspace.Services:FindFirstChild("PickupTool")
-        if pickupTool then
-            local args = {
-                [1] = "correct_identifier",
-                [2] = itemName
-            }
-            pickupTool:InvokeServer(unpack(args))
-        end
-    end
-
-    local function teleportAndPickup()
-        wait(1)
-        LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-751.308716, 120.934639, -3174.425537))
-        for i = 1, 3 do
-            invokePickupTool("Artifact C#615")
-        end
-
-        wait(1)
-        LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(1405.102051, -253.162231, -1853.779907))
-        for i = 1, 3 do
-            invokePickupTool("Artifact B#615")
-        end
-
-        wait(1)
-        LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-1349.432617, -460.606537, -1579.741455))
-        for i = 1, 3 do
-            invokePickupTool("Artifact A#286")
-        end
-
-        wait(1)
-        LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-94.258743, 233.663437, -2794.046875))
-        for i = 1, 3 do
-            invokePickupTool("Assistant Drone")
-        end
-
-        wait(1)
-        LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-1375.454712, 175.646347, -1501.651001))
-        for i = 1, 3 do
-            invokePickupTool("Gatling Gun#490")
-        end
-
-        wait(1)
-        LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-661.720093, 13.630915, 894.568970))
-
-        local AkaliNotif = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/Dynissimo/main/Scripts/AkaliNotif.lua"))()
-        local Notify = AkaliNotif.Notify
-
-        Notify({
-            Description = "Thanks for using LoadoutV1!",
-            Title = "Made By Agent_R/THE REAL SIGMA/irizzupgyats on discord!",
-            Duration = 10
-        })
-    end
-
-    teleportAndPickup()
+    teleportAndPickupLoadout1()
 end)
 
 CloseButton.MouseButton1Click:Connect(function()
-    MainFrame.Visible = not MainFrame.Visible
+    MainFrame.Visible = false
 end)
 
--- Initial button to open the GUI at the top of the screen
-local OpenButton = Instance.new("TextButton")
-OpenButton.Size = UDim2.new(0, 100, 0, 50)
-OpenButton.Position = UDim2.new(0.5, -50, 0, 10) -- Position it at the top center
-OpenButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
-OpenButton.Text = "Open"
-OpenButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-OpenButton.TextSize = 20
-OpenButton.Parent = ScreenGui
+NextPageButton.MouseButton1Click:Connect(function()
+    SectionLabel.Text = "Buttons"
+    ToggleLoadoutsButton:Destroy()
+    LoadoutButton1:Destroy()
 
-OpenButton.MouseButton1Click:Connect(function()
-    MainFrame.Visible = true
+    local BlueButton = Instance.new("TextButton")
+    BlueButton.Name = "BlueButton"
+    BlueButton.Size = UDim2.new(0, 200, 0, 50)
+    BlueButton.Position = UDim2.new(0.5, -100, 0, 60)
+    BlueButton.BackgroundColor3 = Color3.fromRGB(50, 50, 255)
+    BlueButton.Text = "Blue"
+    BlueButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    BlueButton.TextSize = 18
+    BlueButton.Parent = MainFrame
+
+    BlueButton.MouseButton1Click:Connect(function()
+        wait(1)
+        LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-1582.277344, -10.913444, 1000.036011))
+        for i = 1, 3 do
+            invokePickupTool("Blue Artifact")
+        end
+    end)
+
+    local RedButton = Instance.new("TextButton")
+    RedButton.Name = "RedButton"
+    RedButton.Size = UDim2.new(0, 200, 0, 50)
+    RedButton.Position = UDim2.new(0.5, -100, 1, -60)
+    RedButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+    RedButton.Text = "Red"
+    RedButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    RedButton.TextSize = 18
+    RedButton.Parent = MainFrame
+
+    RedButton.MouseButton1Click:Connect(function()
+        wait(1)
+        LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(766.802490, -22.275097, -1118.134521))
+        for i = 1, 3 do
+            invokePickupTool("Red Artifact")
+        end
+    end)
+
+    local YellowButton = Instance.new("TextButton")
+    YellowButton.Name = "YellowButton"
+    YellowButton.Size = UDim2.new(0, 200, 0, 50)
+    YellowButton.Position = UDim2.new(0.5, -100, 1, -120)
+    YellowButton.BackgroundColor3 = Color3.fromRGB(255, 255, 0)
+    YellowButton.Text = "Yellow"
+    YellowButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+    YellowButton.TextSize = 18
+    YellowButton.Parent = MainFrame
+
+    YellowButton.MouseButton1Click:Connect(function()
+        wait(1)
+        LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-356.407043, -41.921169, 1171.302490))
+        for i = 1, 3 do
+            invokePickupTool("Yellow Artifact")
+        end
+    end)
+
+    local GoBackButton = Instance.new("TextButton")
+    GoBackButton.Name = "GoBackButton"
+    GoBackButton.Size = UDim2.new(0, 100, 0, 30)
+    GoBackButton.Position = UDim2.new(0.5, -50, 1, -100)
+    GoBackButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+    GoBackButton.Text = "Go Back"
+    GoBackButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    GoBackButton.TextSize = 18
+    GoBackButton.Parent = MainFrame
+
+    GoBackButton.MouseButton1Click:Connect(function()
+        BlueButton.Visible = false
+        BlueButton.Position = UDim2.new(-1, 0, 0, 0)
+        RedButton.Visible = false
+        RedButton.Position = UDim2.new(-1, 0, 0, 0)
+        YellowButton.Visible = false
+        YellowButton.Position = UDim2.new(-1, 0, 0, 0)
+
+        SectionLabel.Text = "Loadouts"
+        
+        ToggleLoadoutsButton = Instance.new("TextButton")
+        ToggleLoadoutsButton.Name = "ToggleLoadoutsButton"
+        ToggleLoadoutsButton.Size = UDim2.new(0, 200, 0, 50)
+        ToggleLoadoutsButton.Position = UDim2.new(0.5, -100, 0, 60)
+        ToggleLoadoutsButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+        ToggleLoadoutsButton.Text = "Enable Loadouts"
+        ToggleLoadoutsButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+        ToggleLoadoutsButton.TextSize = 18
+        ToggleLoadoutsButton.Parent = MainFrame
+
+        LoadoutButton1 = Instance.new("TextButton")
+        LoadoutButton1.Name = "LoadoutButton1"
+        LoadoutButton1.Size = UDim2.new(0, 200, 0, 50)
+        LoadoutButton1.Position = UDim2.new(0.5, -100, 0, 120)
+        LoadoutButton1.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+        LoadoutButton1.Text = "Loadout 1"
+        LoadoutButton1.TextColor3 = Color3.fromRGB(255, 255, 255)
+        LoadoutButton1.TextSize = 18
+        LoadoutButton1.Parent = MainFrame
+
+        ToggleLoadoutsButton.MouseButton1Click:Connect(function()
+            isEnabled = not isEnabled
+            ToggleLoadoutsButton.Text = isEnabled and "Disable Loadouts" or "Enable Loadouts"
+        end)
+
+        LoadoutButton1.MouseButton1Click:Connect(function()
+            teleportAndPickupLoadout1()
+        end)
+    end)
+end)
+
+MainFrame.Visible = true
+
+local ToggleGuiButton = Instance.new("TextButton")
+ToggleGuiButton.Name = "ToggleGuiButton"
+ToggleGuiButton.Size = UDim2.new(0, 100, 0, 50)
+ToggleGuiButton.Position = UDim2.new(0.5, -50, 0, 10)
+ToggleGuiButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+ToggleGuiButton.Text = "Toggle"
+ToggleGuiButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+ToggleGuiButton.TextSize = 20
+ToggleGuiButton.Parent = ScreenGui
+
+ToggleGuiButton.MouseButton1Click:Connect(function()
+    MainFrame.Visible = not MainFrame.Visible
 end)
