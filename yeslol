@@ -1,3 +1,4 @@
+-- Load the scripts for functionalities
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Ngigerngieofoepdo/VersionTwo/refs/heads/main/Dalgona"))()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Ngigerngieofoepdo/BetterFindAMopImGettingStickyInHisBitch/refs/heads/main/Idkdkdkyes"))()
 
@@ -60,10 +61,20 @@ NextPageButton.Name = "NextPageButton"
 NextPageButton.Size = UDim2.new(0, 200, 0, 50)
 NextPageButton.Position = UDim2.new(0.5, -100, 1, -60)
 NextPageButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-NextPageButton.Text = "Next Page"
+NextPageButton.Text = "Buttons Page"
 NextPageButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 NextPageButton.TextSize = 18
 NextPageButton.Parent = MainFrame
+
+local PylonsPageButton = Instance.new("TextButton")
+PylonsPageButton.Name = "PylonsPageButton"
+PylonsPageButton.Size = UDim2.new(0, 200, 0, 50)
+PylonsPageButton.Position = UDim2.new(0.5, -100, 1, -120)
+PylonsPageButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+PylonsPageButton.Text = "Pylons Page"
+PylonsPageButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+PylonsPageButton.TextSize = 18
+PylonsPageButton.Parent = MainFrame
 
 local isEnabled = true
 
@@ -116,7 +127,7 @@ local function teleportAndPickupLoadout1()
 
     wait(1)
     LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-661.720093, 13.630915, 894.568970))
-
+    
     local AkaliNotif = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/Dynissimo/main/Scripts/AkaliNotif.lua"))()
     local Notify = AkaliNotif.Notify
 
@@ -139,7 +150,9 @@ NextPageButton.MouseButton1Click:Connect(function()
     SectionLabel.Text = "Buttons"
     ToggleLoadoutsButton:Destroy()
     LoadoutButton1:Destroy()
+    PylonsPageButton:Destroy()
 
+    -- Adding Button Page
     local BlueButton = Instance.new("TextButton")
     BlueButton.Name = "BlueButton"
     BlueButton.Size = UDim2.new(0, 200, 0, 50)
@@ -194,6 +207,36 @@ NextPageButton.MouseButton1Click:Connect(function()
         end
     end)
 
+    local GreenButton = Instance.new("TextButton")
+    GreenButton.Name = "GreenButton"
+    GreenButton.Size = UDim2.new(0, 200, 0, 50)
+    GreenButton.Position = UDim2.new(0.5, -100, 1, -180)
+    GreenButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+    GreenButton.Text = "Green"
+    GreenButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    GreenButton.TextSize = 18
+    GreenButton.Parent = MainFrame
+
+    GreenButton.MouseButton1Click:Connect(function()
+        wait(1)
+        LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-685.823792, 145.006729, -1052.920654))
+    end)
+
+    local WhiteButton = Instance.new("TextButton")
+    WhiteButton.Name = "WhiteButton"
+    WhiteButton.Size = UDim2.new(0, 200, 0, 50)
+    WhiteButton.Position = UDim2.new(0.5, -100, 1, -240)
+    WhiteButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    WhiteButton.Text = "White"
+    WhiteButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+    WhiteButton.TextSize = 18
+    WhiteButton.Parent = MainFrame
+
+    WhiteButton.MouseButton1Click:Connect(function()
+        wait(1)
+        LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-2225.454834, -8.595004, -852.204712))
+    end)
+
     local GoBackButton = Instance.new("TextButton")
     GoBackButton.Name = "GoBackButton"
     GoBackButton.Size = UDim2.new(0, 100, 0, 30)
@@ -205,12 +248,12 @@ NextPageButton.MouseButton1Click:Connect(function()
     GoBackButton.Parent = MainFrame
 
     GoBackButton.MouseButton1Click:Connect(function()
+        -- Clear button visibility and return to Loadouts
         BlueButton.Visible = false
-        BlueButton.Position = UDim2.new(-1, 0, 0, 0)
         RedButton.Visible = false
-        RedButton.Position = UDim2.new(-1, 0, 0, 0)
         YellowButton.Visible = false
-        YellowButton.Position = UDim2.new(-1, 0, 0, 0)
+        GreenButton.Visible = false
+        WhiteButton.Visible = false
 
         SectionLabel.Text = "Loadouts"
         
@@ -233,6 +276,112 @@ NextPageButton.MouseButton1Click:Connect(function()
         LoadoutButton1.TextColor3 = Color3.fromRGB(255, 255, 255)
         LoadoutButton1.TextSize = 18
         LoadoutButton1.Parent = MainFrame
+
+        ToggleLoadoutsButton.MouseButton1Click:Connect(function()
+            isEnabled = not isEnabled
+            ToggleLoadoutsButton.Text = isEnabled and "Disable Loadouts" or "Enable Loadouts"
+        end)
+
+        LoadoutButton1.MouseButton1Click:Connect(function()
+            teleportAndPickupLoadout1()
+        end)
+    end)
+end)
+
+PylonsPageButton.MouseButton1Click:Connect(function()
+    SectionLabel.Text = "Pylons"
+    ToggleLoadoutsButton:Destroy()
+    LoadoutButton1:Destroy()
+    NextPageButton:Destroy()
+    PylonsPageButton:Destroy()
+
+    -- Adding Pylons Page
+    local Pylon1Button = Instance.new("TextButton")
+    Pylon1Button.Name = "Pylon1Button"
+    Pylon1Button.Size = UDim2.new(0, 200, 0, 50)
+    Pylon1Button.Position = UDim2.new(0.5, -100, 0, 60)
+    Pylon1Button.BackgroundColor3 = Color3.fromRGB(50, 255, 50)
+    Pylon1Button.Text = "Pylon 1"
+    Pylon1Button.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Pylon1Button.TextSize = 18
+    Pylon1Button.Parent = MainFrame
+
+    Pylon1Button.MouseButton1Click:Connect(function()
+        wait(1)
+        LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(100, 0, 100)) -- Adjust coordinates for Pylon 1
+    end)
+
+    local Pylon2Button = Instance.new("TextButton")
+    Pylon2Button.Name = "Pylon2Button"
+    Pylon2Button.Size = UDim2.new(0, 200, 0, 50)
+    Pylon2Button.Position = UDim2.new(0.5, -100, 1, -60)
+    Pylon2Button.BackgroundColor3 = Color3.fromRGB(50, 255, 50)
+    Pylon2Button.Text = "Pylon 2"
+    Pylon2Button.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Pylon2Button.TextSize = 18
+    Pylon2Button.Parent = MainFrame
+
+    Pylon2Button.MouseButton1Click:Connect(function()
+        wait(1)
+        LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(200, 0, 200)) -- Adjust coordinates for Pylon 2
+    end)
+
+    local GoBackToMainButton = Instance.new("TextButton")
+    GoBackToMainButton.Name = "GoBackToMainButton"
+    GoBackToMainButton.Size = UDim2.new(0, 100, 0, 30)
+    GoBackToMainButton.Position = UDim2.new(0.5, -50, 1, -100)
+    GoBackToMainButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+    GoBackToMainButton.Text = "Go Back"
+    GoBackToMainButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    GoBackToMainButton.TextSize = 18
+    GoBackToMainButton.Parent = MainFrame
+
+    GoBackToMainButton.MouseButton1Click:Connect(function()
+        Pylon1Button.Visible = false
+        Pylon2Button.Visible = false
+
+        SectionLabel.Text = "Loadouts"
+        
+        ToggleLoadoutsButton = Instance.new("TextButton")
+        ToggleLoadoutsButton.Name = "ToggleLoadoutsButton"
+        ToggleLoadoutsButton.Size = UDim2.new(0, 200, 0, 50)
+        ToggleLoadoutsButton.Position = UDim2.new(0.5, -100, 0, 60)
+        ToggleLoadoutsButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+
+        ToggleLoadoutsButton.Text = "Enable Loadouts"
+        ToggleLoadoutsButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+        ToggleLoadoutsButton.TextSize = 18
+        ToggleLoadoutsButton.Parent = MainFrame
+
+        LoadoutButton1 = Instance.new("TextButton")
+        LoadoutButton1.Name = "LoadoutButton1"
+        LoadoutButton1.Size = UDim2.new(0, 200, 0, 50)
+        LoadoutButton1.Position = UDim2.new(0.5, -100, 0, 120)
+        LoadoutButton1.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+        LoadoutButton1.Text = "Loadout 1"
+        LoadoutButton1.TextColor3 = Color3.fromRGB(255, 255, 255)
+        LoadoutButton1.TextSize = 18
+        LoadoutButton1.Parent = MainFrame
+
+        NextPageButton = Instance.new("TextButton")
+        NextPageButton.Name = "NextPageButton"
+        NextPageButton.Size = UDim2.new(0, 200, 0, 50)
+        NextPageButton.Position = UDim2.new(0.5, -100, 1, -60)
+        NextPageButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+        NextPageButton.Text = "Buttons Page"
+        NextPageButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+        NextPageButton.TextSize = 18
+        NextPageButton.Parent = MainFrame
+
+        PylonsPageButton = Instance.new("TextButton")
+        PylonsPageButton.Name = "PylonsPageButton"
+        PylonsPageButton.Size = UDim2.new(0, 200, 0, 50)
+        PylonsPageButton.Position = UDim2.new(0.5, -100, 1, -120)
+        PylonsPageButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+        PylonsPageButton.Text = "Pylons Page"
+        PylonsPageButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+        PylonsPageButton.TextSize = 18
+        PylonsPageButton.Parent = MainFrame
 
         ToggleLoadoutsButton.MouseButton1Click:Connect(function()
             isEnabled = not isEnabled
